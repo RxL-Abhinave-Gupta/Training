@@ -1,0 +1,35 @@
+Q1,Q2
+
+create table department(dept_id int,department_name varchar(50);
+create table locations(location_id int,location_name varchar(50));
+create table employee(emp_id int primary key ,employee_name varchar(50),department_id int foreign key refrences department(dept_id),location_id int foreign key refrences locations(location_id),salary int);
+
+Q3insert into locations values(1,'delhi');
+insert into locations values(2,'noida');
+insert into department values (100,'eng');
+insert into department values (101,'tax');
+insert into department values (102,'fin');
+insert into department values (103,'QA');
+insert into employee values (001,'ab',102,1,300);
+insert into employee values (002,'bc',101,2,400);
+insert into employee values (003,'cd',101,1,500);
+insert into employee values (004,'de',100,2,10000);
+insert into employee values (005,'ef',101,1,5000);
+insert into employee values (006,'fg',100,2,7000);
+insert into employee values (007,'gh',102,2,100);
+insert into employee values (008,'hi',101,1,1220);
+insert into employee values (009,'ij',100,2,3000);
+insert into employee values (010,'zz',101,1,4000);
+Q4 
+a) display all employees names and their department names:
+select employee_name , department_name from employee,department where department_id=dept_id ;
+
+b)isplay all location_name, department_name, employee_name, salary for all matching rows from 3 tables:
+select employee_name , department_name ,location_name from employee e,department d,locations l where department_id=dept_id and e.location_id=l.location_id;
+
+c) select maximum salary earned from each department
+select max(salary),department_id from employee group by department_id;
+
+e)select location_name, department_name, average_salary(of each location):
+select department_name,location_name ,avg(salary) from locations l ,employee e,department  where l.location_id=e.location_id and department_id=dept_id group by location_name,department_name  ; 
+
